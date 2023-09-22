@@ -1,30 +1,43 @@
 <script>
-	export let name;
+let EvenNum = [1, 2, 3, 4, 5, 6]
+function AddNum()
+	{
+			EvenNum = [...EvenNum, EvenNum.length + 1]	
+	}
+
+function DelNum(i)
+{
+	EvenNum = EvenNum.filter((e,i)=> i != i)
+}
+
 </script>
 
-<main>
-	<h1>Zdarova {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<button on:click={AddNum}>
+	<h1>AddNumer</h1>
+</button>
+<p>{EvenNum}</p>
+<div>
+	{#each EvenNum as num}
+		{#if num%2 == 0 && num < 10}
+		<p>{num}</p>
+		{/if}
+		{#if num%2 == 0 && num%2 == 0}
+		<p class = "bgcolor">{num} </p>
+	  {/if}
+	{/each}
+</div>
 
+<div>
+	
+    {#each EvenNum as num, i}
+	<button
+	on:click = {() => DelNum(i)}>
+		{i + 1}</button>
+
+	{/each}
+
+</div>
+	
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+	.bgcolor{background:blue;}
 </style>

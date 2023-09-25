@@ -45,6 +45,6 @@ $:  border = EvenNum.length
 </div>
 	
 <style>
-	.blue{background:blue;}
-	.red{background:red;}
+	.even{background:blue;}
+	.odd{background:red;}
 </style>

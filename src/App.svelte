@@ -1,30 +1,36 @@
 <script>
-let EvenNum = [1, 2, 3, 4, 5, 6]
+let EvenNum = []
+let src = 'https://upload.wikimedia.org/wikipedia/ru/6/61/Rickrolling.gif';
+let name = 'Rick Astley';
 function AddNum()
 	{
 			EvenNum = [...EvenNum, EvenNum.length + 1]	
 	}
 
-function DelNum(i)
+function DelNum(idx)
 {
-	EvenNum = EvenNum.filter((e,i)=> i != i)
+	EvenNum = EvenNum.filter((e,i)=> idx != i)
 }
 
+$:  border = EvenNum.length
 </script>
 
 <button on:click={AddNum}>
 	<h1>AddNumer</h1>
 </button>
+
 <p>{EvenNum}</p>
-<div>
+<div style = {`border:${border}px solid gray`}>
 	{#each EvenNum as num}
-		{#if num%2 == 0 && num < 10}
-		<p>{num}</p>
+	 {#if num%3 == 0 && num%3 == 0}
+	 <p class = "red">{num} </p>
 		{/if}
 		{#if num%2 == 0 && num%2 == 0}
-		<p class = "bgcolor">{num} </p>
+	<p class = "blue">{num} </p>
 	  {/if}
-	{/each}
+	{:else}
+	<img {src} alt="{name} dances." />
+	{/each} 
 </div>
 
 <div>
@@ -32,12 +38,13 @@ function DelNum(i)
     {#each EvenNum as num, i}
 	<button
 	on:click = {() => DelNum(i)}>
-		{i + 1}</button>
+		{num}</button>
 
 	{/each}
 
 </div>
 	
 <style>
-	.bgcolor{background:blue;}
+	.blue{background:blue;}
+	.red{background:red;}
 </style>

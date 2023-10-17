@@ -19,44 +19,61 @@
 		todoList = todoList;
     }
 </script>
-
-<div>
-<div>
+	
+<div class = "flex1">
+<div class = "todo">
+	
 <h1>Список дел</h1>
-<form on:submit|preventDefault={addToList}>
+
+<div class = "todos" on:submit|preventDefault={addToList}>
 <input bind:value={newItem} type="text" placeholder="new todo item..">
 <button disabled={!newItem}>
 	Add
 </button>
-</form>
-
+</div>
 {#each todoList as item, index}
 
 <TodoItem 
 ItemData = {item}
 ItemIndex = {index} 
 Remove = {removeFromList} 
-
 />
 
 {/each}
-
+</div>
+</div>
 <p>{uncompletedCount} из {allcount} дел выполнено</p>
-</div>
-</div>
-
 <style>
-	.checked 
-	{
-    text-decoration: line-through;
-    }
 
-	.flexclass 
-	{
- 	display: flex;
- 	flex-wrap: wrap;
- 	justify-content: center;
- 	align-content: center;
- 	height: 100vh;	
-  	}
+	.item {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		
+	}
+	.checked {
+		text-decoration: line-through;
+	}
+	.flex1 {
+		display: flex;
+		height: 100vh;
+		justify-content: center;
+		align-items: center;
+		background: #183544;
+		padding: 4em ;
+		margin: 4em;
+	}
+	.todo {
+		display: flex;
+		flex-direction: column;
+		background: #49778f;
+		color: whitesmoke;
+		padding: 2em ;
+	}
+	.todos {
+		display: flex;
+		flex-direction: column;
+
+	}
+
 </style>

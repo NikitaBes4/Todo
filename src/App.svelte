@@ -25,12 +25,12 @@
 	
 <h1>Список дел</h1>
 
-<div class = "todos" on:submit|preventDefault={addToList}>
+<form on:submit|preventDefault={addToList}>
 <input bind:value={newItem} type="text" placeholder="new todo item..">
 <button disabled={!newItem}>
 	Add
 </button>
-</div>
+</form>
 {#each todoList as item, index}
 
 <TodoItem 
@@ -40,40 +40,26 @@ Remove = {removeFromList}
 />
 
 {/each}
-</div>
-</div>
 <p>{uncompletedCount} из {allcount} дел выполнено</p>
+</div>
+</div>
 <style>
-
-	.item {
+	.flex1 
+	{
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		
-	}
-	.checked {
-		text-decoration: line-through;
-	}
-	.flex1 {
-		display: flex;
-		height: 100vh;
+		height: 80vh;
 		justify-content: center;
 		align-items: center;
-		background: #183544;
+		background: #be6318;
+		padding: 4em;
+		margin: 1em;
+	}
+	.todo 
+	{
+		display: flex;
+		flex-direction: column;
+		background: #b18422;
+		color: rgb(255, 255, 255);
 		padding: 4em ;
-		margin: 4em;
 	}
-	.todo {
-		display: flex;
-		flex-direction: column;
-		background: #49778f;
-		color: whitesmoke;
-		padding: 2em ;
-	}
-	.todos {
-		display: flex;
-		flex-direction: column;
-
-	}
-
 </style>

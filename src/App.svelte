@@ -1,11 +1,10 @@
 <script>
     import TodoItem from "./TodoItem.svelte"
+	import todoData from "./Data.js"
+	
+	let todoList = todoData
 
     let newItem = "";
-
-    let todoList = [{text: 'Write my first post', status: true},
-                    {text: 'Upload the post to the blog', status: false},
-                    {text: 'Publish the post at Facebook', status: false}];
 
 	$: uncompletedCount = todoList.filter(t => t.status).length;
 	$: allcount = todoList.length;
@@ -17,7 +16,7 @@
 	function removeFromList(index) {
 		todoList.splice(index, 1)
 		todoList = todoList;
-    }
+	}
 </script>
 	
 <div class = "flex1">
@@ -37,6 +36,7 @@
 ItemData = {item}
 ItemIndex = {index} 
 Remove = {removeFromList} 
+on:statusCheck = {(event) => {item.status =! item.status}}
 />
 
 {/each}
@@ -47,7 +47,7 @@ Remove = {removeFromList}
 	.flex1 
 	{
 		display: flex;
-		height: 80vh;
+		height: 100vh;
 		justify-content: center;
 		align-items: center;
 		background: #be6318;

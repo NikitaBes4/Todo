@@ -1,26 +1,32 @@
 <script>
+    import { createEventDispatcher } from "svelte/internal";
+
     export let ItemData
     export let ItemIndex
     export let Remove
+
+	const dispatch = createEventDispatcher();
+
 </script>
 
 <todoItem class = "todo">
 <div class = "item">
-<input bind:checked={ItemData.Stats} type="checkbox">
+<input on:change={(event) => dispatch('statusCheck',
+{stat: event.target.checked})}
+checked = {ItemData.status} type="checkbox">
 <div class:checked={ItemData.Stats}>
 {ItemData.text}
 <div class = "cross" on:click={() => Remove(ItemIndex)}>
 &times;
 </div>
 </div>
-
 </div>
 </todoItem>
 
 <style> 
 	.item div:nth-child(2)
 	{
-		width: 10em ;
+		width: 9em ;
 		display: flex;
 		flex-direction: row;
 		align-items: center;

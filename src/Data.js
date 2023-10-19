@@ -1,0 +1,3 @@
+export default  [{text: 'Write my first post', status: true},
+                {text: 'Upload the post to the blog', status: false},
+                {text: 'Publish the post at Facebook', status: false}];

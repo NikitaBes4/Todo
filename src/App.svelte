@@ -1,6 +1,9 @@
 <script>
-    import TodoItem from "./TodoItem.svelte"
-	import todoData from "./Data.js"
+	import ToDoItem from "./TodoItem.svelte";
+	import {DataSelect} from "./Data";
+    import ListToDo from "./DataStore";
+    import Info from "./InfoToDoList.svelte";
+    import AddToDoList from "./AddToDoList.svelte";
 	
 	let todoList = todoData
 
@@ -8,6 +11,13 @@
 
 	$: uncompletedCount = todoList.filter(t => t.status).length;
 	$: allcount = todoList.length;
+
+	
+	$: ShowAll = () => {return $ListToDo}
+	$: ShowTrue = () => {return $ListToDo.filter(t => t.status == true )}
+	$: ShowFalse = () => {return $ListToDo.filter(t => t.status == false )}
+	$: funclist = [ShowAll, ShowTrue, ShowFalse]
+	
 	
 	function addToList() {
 		todoList = [...todoList, {text: newItem, status: false}];

@@ -1,62 +1,53 @@
 <script>
-    import { createEventDispatcher } from "svelte/internal";
-
-    export let ItemData
-    export let ItemIndex
-    export let Remove
+	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 
-</script>
-
-<todoItem class = "todo">
-<div class = "item">
-<input on:change={(event) => dispatch('statusCheck',
-{stat: event.target.checked})}
-checked = {ItemData.status} type="checkbox">
-<div class:checked={ItemData.Stats}>
-{ItemData.text}
-<div class = "cross" on:click={() => Remove(ItemIndex)}>
-&times;
-</div>
-</div>
-</div>
-</todoItem>
-
-<style> 
-	.item div:nth-child(2)
-	{
-		width: 9em ;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-	}
-	.item 
-	{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+    export let  todoitem;
+    export let todoIndex;
+	
+	function filterevent(todoIndex){
 		
+		dispatch('ondelete',
+		{
+			id:  todoIndex
+		})
 	}
-	.checked {
-		text-decoration: line-through;
+</script> 
+
+<remove> </remove>
+<div class = "tableflex">
+
+	<input on:change={(event) =>  dispatch('checkstatus', 
+	{stat: event.target.checked})} 
+	checked = {todoitem.status} type = "checkbox"/>
+	
+	<div class:checked={todoitem.status}>
+		{todoitem.text}
+	</div>	
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<div class = "delbutton" on:click={() => filterevent(todoIndex)}>&times;
+    </div>
+</div>
+
+
+<style>
+    .tableflex div:nth-child(2)
+	{
+		width: 100%;
 	}
-	.todo 
+
+	.tableflex 
 	{
 		display: flex;
-		flex-direction: column;
-		background: #b18422;
-		color: rgb(255, 255, 255);
-		padding: 2em ;
+		justify-content: center;
+		align-items: center;	
 	}
-    .cross
-    {
-   		font-size: 2em;
-   		color: red;
-    }
 
-    .checked 
-    {
-    	text-decoration: line-through;
-    }
-</style> 
+    .delbutton
+	{
+		font-size: 2em;
+		font-style: normal;
+		color: rgb(255, 0, 0);
+	}
+</style>

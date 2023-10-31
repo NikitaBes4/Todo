@@ -2,6 +2,18 @@
     import Info from "./InfoToDoList.svelte";
     import AddToDoList from "./AddToDoList.svelte";
 	import FilterSelect from "./FilterSelect.svelte"
+	import { supabase } from "./store";
+	import { onMount } from "svelte";
+	export let name;
+	let data 
+
+	onMount(async () => {
+		let n = await supabase
+             .from('countries')
+             .select('id,name')
+			 console.log('N',n)
+        data=n.data
+	});
 </script>
 
 <div class = "flex" >
@@ -26,5 +38,5 @@
 			color: white;
 			
 	}
-	
+
 </style> 

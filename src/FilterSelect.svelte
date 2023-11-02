@@ -23,7 +23,7 @@ let selected = 0;
 <fieldset>
 	<legend>Фильтрация </legend>
 
-<select
+<select class="select select-warning w-full max-w-xs"
 		bind:value={selected}>
 
 		{#each DataSelect as item}

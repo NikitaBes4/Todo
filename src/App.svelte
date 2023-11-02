@@ -1,42 +1,22 @@
 <script>
-    import Info from "./InfoToDoList.svelte";
-    import AddToDoList from "./AddToDoList.svelte";
-	import FilterSelect from "./FilterSelect.svelte"
-	import { supabase } from "./store";
-	import { onMount } from "svelte";
-	export let name;
-	let data 
+    import TodoApp from "./TodoApp.svelte";
+    import Teg from "./teg.svelte"
+    
+    const components = [
+    { comp: 'comp1', component: TodoApp },
+    { comp: 'comp2', component: Teg},
+];
 
-	onMount(async () => {
-		let n = await supabase
-             .from('countries')
-             .select('id,name')
-			 console.log('N',n)
-        data=n.data
-	});
+let selected = components[0];
+
 </script>
 
-<div class = "flex" >
+<select class="select select-warning w-full max-w-xs" bind:value={selected}>
+	{#each components as components}
+		<option value={components}>{components.comp}</option>
+	{/each}
+</select>
+
 <div>
-
-<AddToDoList />
-<FilterSelect />
-<Info />
-
+<svelte:component this={selected.component} />
 </div>
-</div>
-
-<style> 
-
-	.flex{
-			display: flex;
-			justify-content: center;
-			flex-wrap: wrap;
-		  	align-content: center;
-			height: 100vh;
-			background: rgb(223, 108, 0);
-			color: white;
-			
-	}
-
-</style> 

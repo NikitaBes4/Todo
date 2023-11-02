@@ -15,10 +15,10 @@
 	}
 </script> 
 
-<remove> </remove>
+
 <div class = "tableflex">
 
-	<input on:change={(event) =>  dispatch('checkstatus', 
+	<input class="checkbox checkbox-warning" on:change={(event) =>  dispatch('checkstatus', 
 	{stat: event.target.checked})} 
 	checked = {todoitem.status} type = "checkbox"/>
 	

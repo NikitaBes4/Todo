@@ -2,12 +2,12 @@
     //https://tailwindui.com/components/application-ui/forms/sign-in-forms 
     
     import { supabase } from "./store";
-       import {supauser} from "./store"
-       // import User from './user.svelte'
+    import {supauser} from "./store"
+    import User from './User.svelte'
     
     let email='mandarin215@gmail.com'
     export let hide;
-   
+
    
    
     let pwd, pwd2;
@@ -87,16 +87,12 @@
                {#if pwderr}
                    <label for="password" class="font-medium text-sm text-orange-500 ">пароли не соответствуют </label>
                {/if}  
-           </div>
-   
-   
-   
-     
+           </div>  
            <div>
              <button type="submit" class="form-input    flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
            </div>
          </form>
-     
+     <User/>
       
        </div>
      </div>

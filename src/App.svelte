@@ -4,7 +4,7 @@
     import SignIn from './SignIn.svelte';
 	import { supauser  } from './store';
     import { supabase } from "./store";
-
+    import Form from "./form.svelte";
     
 	import { onMount } from "svelte";
 	export let name;
@@ -39,6 +39,7 @@ function toggleComp(){
     {/each}
 {/if}
 <svelte:component this={comp} hide={hideSignIn}/>
+<Form/>
 </main>
 
 

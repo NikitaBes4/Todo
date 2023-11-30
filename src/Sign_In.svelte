@@ -18,7 +18,7 @@
             initialValues: {
                 title: "Mr.",
                 name: "",
-                email: "vvv@mm.com",
+                email: "user1@mail.com",
                 password: "",
                 confirmpwd: "",
             },
@@ -67,16 +67,16 @@
 </script>
 
 <div
-    class=" bg-gray-100 py-0 flex flex-col justify-center sm:py-12 border border-gray-400"
+    class=" bg-amber-100 py-0 flex flex-col justify-center sm:py-12 border border-white-400"
 >
 
     <form on:submit|preventDefault={signInUser}>
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"
+                class="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"
             ></div>
             <div
-                class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
+                class="relative px-4 py-10 bg-amber-100 shadow-lg sm:rounded-3xl sm:p-20"
             >
                 <div class="max-w-md mx-auto">
                     <div>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="divide-y divide-gray-200">
                         <div
-                            class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+                            class="py-8 text-base leading-6 space-y-4 text-black-700 sm:text-lg sm:leading-7"
                         >
                             <div class="relative">
                                 <input
@@ -95,13 +95,13 @@
                                     on:change={handleChange}
                                     on:blur={handleChange}
                                     bind:value={$form.email}
-                                    class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                    class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-black-900 focus:outline-none focus:borer-rose-600"
                                     placeholder="Email address"
                                 />
 
                                 <label
                                     for="email"
-                                    class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                    class="absolute left-0 -top-3.5 text-black-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-black-600 peer-focus:text-sm"
                                     >Email Address</label
                                 >
 
@@ -120,7 +120,7 @@
                                     id="password"
                                     name="password"
                                     type="password"
-                                    class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                    class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-black-900 focus:outline-none focus:borer-rose-600"
                                     placeholder="Password"
                                     on:change={handleChange}
                                     on:blur={handleChange}
@@ -128,7 +128,7 @@
                                 />
                                 <label
                                     for="password"
-                                    class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                    class="absolute left-0 -top-3.5 text-black-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-black-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-black-600 peer-focus:text-sm"
                                     >Password</label
                                 >
 
@@ -143,7 +143,7 @@
                             <div class="relative text-right">
                                 <button type='submit'
                                 disabled={!$isValid} 
-                                    class="bg-blue-500 text-white rounded-md px-2 py-1"
+                                    class="bg-amber-500 text-black rounded-md px-2 py-1"
                                     >Войти</button
                                 >
                             </div>

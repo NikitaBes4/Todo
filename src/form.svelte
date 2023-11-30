@@ -1,10 +1,4 @@
 <script>
-  //https://svelte-forms-lib-sapper-docs.vercel.app/introduction
-  //npm i svelte-forms-lib
-
-  // https://www.npmjs.com/package/yup
-  //npm i yup
-
   import { createForm } from "svelte-forms-lib";
   import * as yup from "yup";
 

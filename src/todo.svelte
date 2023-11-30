@@ -5,19 +5,8 @@
     import { onMount } from "svelte";
     import { supabase } from "./store";
     import { supauser } from "./store";
-
     let todos = null;
-    
-    // onMount(async () => {
-    //     let { data: GrigorievToDo, error } = await supabase
-    //         .from("GrigorievToDo")
-    //         .select("*");
-            
-    //     if (GrigorievToDo) {
-    //         todos = GrigorievToDo;
-    //     }
-        
-    // });
+ 
     onMount(
         //Обработка создания компонента
         async () => {
@@ -34,38 +23,43 @@
     );
 
     async function refresh() {
-        //Обновление
-        let { data: GrigorievToDo, error } = await supabase
-            .from("GrigorievToDo")
+        let { data: ToDo, error } = await supabase
+            .from("ToDo")
             .select("*");
 
-        if (GrigorievToDo) {
-            todos = GrigorievToDo;
+        if (ToDo) {
+            todos = ToDo;
         }
     }
 
     async function addToList() {
-         //обработка (fake) добавления
         const { data, error } = await supabase
-            .from("GrigorievToDo")
-            .insert([{ Text: "новое дело 6", Done: false }])
+            .from("ToDo")
+            .insert([{User_ID: $supauser.user.id, Text: "новое дело 6", Checked: false }])
             .select();
+    
 
         console.log(error, data);
         if (data) {
             todos = [
                 ...todos,
-                { Text: data[0].Text, Done: data[0].Done },
+                {id:data[0].id, User_Id: data[0].User_ID, Text: data[0].Text, Checked: data[0].Checked },
             ];
         }
     }
-    async function onChange(ev) {
-        //обработка checkBox
+    async function Delete(id) {
+    const { error } = await supabase
+  .from('ToDo')
+  .delete()
+  .eq('id', id)
+  refresh()       
+    }
 
+    async function onChange(ev) {
         console.log(ev.srcElement.checked);
 
         const { data, error } = await supabase
-            .from("mytodos")
+            .from("ToDo")
             .update({ done: ev.srcElement.checked })
             .eq("id", ev.srcElement.id)
             .select();
@@ -92,6 +86,7 @@
                     </div>
                     <div>
                         {item.Text}
+                        <button on:click={() => Delete(item.id)}>❌</button>
                     </div>
                 </div>
             {/each}
@@ -107,18 +102,3 @@
         <button on:click={refresh}> Обновить </button>
     </div>
 </div>
-
-
-
-<!-- <div class="flex flex-col items-center justify-center">
-{#if todos}
-    {#each todos as item}
-        <p>
-            {item.Text}
-            {item.Done}
-        </p>
-    {/each}
-{:else}
-    <p>Загрузка данных...</p>
-{/if}
-</div> -->

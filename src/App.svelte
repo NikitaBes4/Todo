@@ -1,9 +1,4 @@
 <script>
-	// import SignIn from "./SignIn.svelte";
-	// import SignUp from "./Signup.svelte";
-
-	import Form from "./form.svelte";
-
 	import { supauser } from "./store";
 	import Signup from "./Sign_In.svelte";
 	import Todo from "./todo.svelte"
@@ -11,7 +6,7 @@
 	let comp = null;
 
 	function toggleComp() {
-		comp = Signup; //SignIn //Form
+		comp = Signup;
 	}
 	function hideSignIn() {
 		comp = null;
@@ -20,11 +15,10 @@
 
 
 <main
-	class="border border-gray-400 flex flex-col align-middle justify-between min-h-screen h-auto p-2 m-2"
+	class="border border-amber-400 flex flex-col align-middle justify-between min-h-screen h-auto p-2 m-2"
 >
-	<!-- заготовка для top-меню -->
 
-	<ul class="flex flex-row h-10 content-center flex-wrap px-3 bg-cyan-500 text-black">
+	<ul class="flex flex-row h-10 content-center flex-wrap px-3 bg-amber-500 text-black">
 		<li>
 			<button on:click={toggleComp}>Вход</button>
 		</li>
@@ -38,20 +32,11 @@
 		{/if}
 	</ul>
 
-	<!-- <div class="flex flex-col items-center justify-center">
-		
-		{#if $supauser.user != null}
-			<p>x{$supauser.user.id}</p>
-		{/if}
-	</div> -->
-	<!-- tmp для проверки центрирования -->
-	<!-- <p class="self-center">middle tmp</p> -->
 
-	<!-- место для компонентов -->
-	<div class="w-1/2  bg-sky-500/75 m-auto">
+	<div class="w-1/2  bg-amber-500/75 m-auto">
 	    <svelte:component this={comp} hide={hideSignIn} class="m-auto " />
     </div>
-	<div class=" p-2 bg-blue-300  text-black">
+	<div class=" p-2 bg-amber-500  text-black">
 		<p>
 			Footer (подвал). Всегда должен быть внизу страницы. Родитель д.б.
 			flex-col justify-between
@@ -62,7 +47,7 @@
 <style>
 	:global(body) {
 		height: 100vh;
-		background-color: rgb(235, 245, 245);
+		background-color: rgb(207, 170, 115)
 	}
 
 	/* навигацию сделать компонентом */

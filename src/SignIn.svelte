@@ -6,14 +6,14 @@
  
      // import User from './user.svelte'
   
-  let email='vkondra@gmail.com'
+  let email='user1@mail.com'
   export let hide;
  
  
  
   let pwd, pwd2;
-  pwd='123MazayMazay!'
-  pwd2='123MazayMazay!'
+  pwd='1qazxsw2'
+  pwd2='1qazxsw2'
   $: pwderr = pwd != pwd2
  
  const signup = async()=>{
@@ -22,7 +22,7 @@
                email: email,
                password: pwd,
                options: {
-                 redirectTo: {emailRedirectTo:'https://5173-vlakondra-supawind-ipljnaxxxny.ws-eu105.gitpod.io'}
+                 redirectTo: {emailRedirectTo:'https://5173-nikitabes4-todo-o6kqlsyy3aj.ws-eu106.gitpod.io'}
                }
    })
    console.log("???",error, data)

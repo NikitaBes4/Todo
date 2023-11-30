@@ -5,7 +5,8 @@
 	import { supabase } from "./store";
 	import { onMount } from "svelte";
 
-	let data 
+	let data
+	let todos = null
 
 	onMount(async () => {
 		let n = await supabase
@@ -14,18 +15,91 @@
 			 console.log('N',n)
         data=n.data
 	});
+	async function refresh() {
+        //Обновление
+        let { data: mytodos, error } = await supabase
+            .from("mytodos")
+            .select("*");
+
+        if (mytodos) {
+            todos = mytodos;
+        }
+    }
+
+    async function addToList() {
+         //обработка (fake) добавления
+        const { data, error } = await supabase
+            .from("mytodos")
+            .insert([{ content: "новое дело 6", done: false }])
+            .select();
+
+        console.log(error, data);
+        if (data) {
+            todos = [
+                ...todos,
+                { content: data[0].content, done: data[0].done },
+            ];
+        }
+    }
+    async function onChange(ev) {
+        //обработка checkBox
+
+        console.log(ev.srcElement.checked);
+
+        const { data, error } = await supabase
+            .from("mytodos")
+            .update({ done: ev.srcElement.checked })
+            .eq("id", ev.srcElement.id)
+            .select();
+
+        console.log(data,error)
+     }
+
+	async function Delete () {
+	const { error } = await supabase
+  .from('ToDo')
+  .delete()
+  .eq('some_column', 'someValue')
+  }
+          
 </script>
 
 <div class = "flex" >
+	
 <div>
+    {#if todos}
+        <div class="flex flex-col">
+            {#each todos as item}
+                <div class="flex flex-row justify-between">
+                    <div>
+                        {item.id}
+                    </div>
+                    <div>
+                        <input
+                            id={item.id}
+                            on:change={onChange}
+                            bind:checked={item.done}
+                            type="checkbox"
+                        />
+                    </div>
+                    <div>
+                        {item.content}
+                    </div>
+                </div>
+            {/each}
+        </div>
+    {:else}
+        <p>Загрузка данных...</p>
+    {/if}
 
-<AddToDoList />
-<FilterSelect />
-<Info />
-
+    <div>
+        <button on:click={addToList}> Добавить </button>
+    </div>
+    <div>
+        <button on:click={refresh}> Обновить </button>
+    </div>
 </div>
 </div>
-
 <style> 
 
 	.flex

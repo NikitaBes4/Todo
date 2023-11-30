@@ -5,6 +5,7 @@
 	import { supauser  } from './store';
     import { supabase } from "./store";
     import Form from "./form.svelte";
+	import Todo from './TodoApp.svelte';
     
 	import { onMount } from "svelte";
 	export let name;
@@ -25,8 +26,11 @@ function SignInSwitch(){
 	    comp = Form
     }
    function hideSignIn(){
-	 comp =null
+	 comp = null
    }
+   function ToDoSwitch(){
+	    comp = Todo
+    }
 
 </script>
 <!-- <button on:click={toggleComp}>Comp</button> -->
@@ -37,36 +41,31 @@ function SignInSwitch(){
 	<div class = "bg-blue-400">
 		<ul class="flex flex-row px-3">
 			<li>
-				<button on:click={SignInSwitch}>SignIn</button>
+				<button on:click={SignInSwitch}>Регистрация</button>
 			</li>
 			<li>
-				<button on:click={() => (comp = null)}>Hide</button>
+				<button on:click={() => (comp = null)}>Спрятать</button>
 			</li>
             <li>
-				<button on:click={LogInSwitch}>Login</button>
+				<button on:click={LogInSwitch}>Вход</button>
 			</li>
+			<button on:click={ToDoSwitch}>СписокДел</button>
 		</ul>
 	</div>
 
 	<!-- контент должен центрироваться по горизонтали и вертикали
 	flex-grrow:1 обязательно -->
-	<div class="grow flex flex-col items-center justify-center">
-		<!-- tmp для отладки -->
+	<!-- <div class="grow flex flex-col items-center justify-center">
 		{#if $supauser.user != null}
 			<p>x{$supauser.user.id}</p>
 		{/if}
-		<!-- tmp для проверки центрирования -->
-		<!-- <p>middle tmp</p> -->
-		<!-- место для компонентов -->
+	</div> -->
 		<svelte:component this={comp} hide={hideSignIn} />
-	</div>
+	
 
 	<!-- margin-top:auto обязательно для фиксации подвала внизу -->
 	<div class="mt-auto p-2 bg-slate-200">
-		<p>
-			Footer (подвал). Всегда должен быть внизу страницы. Как сделать?
-			Добавить class="mt-auto". Родитель д.б. flex-col
-		</p>
+		!!!
 	</div>
 </main>
 

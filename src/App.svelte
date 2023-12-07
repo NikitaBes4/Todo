@@ -2,7 +2,6 @@
 	import { supauser } from "./store";
 	import Signup from "./Sign_In.svelte";
 	import Todo from "./todo.svelte"
-
 	let comp = null;
 
 	function toggleComp() {

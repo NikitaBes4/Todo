@@ -6,20 +6,14 @@
     import { supabase } from "./store";
     import { supauser } from "./store";
     let todos = null;
+    let newItem = '';
  
     onMount(
-        //Обработка создания компонента
+
         async () => {
             refresh();
         },
-        // async () => {
-        // let { data: mytodos, error } = await supabase
-        //     .from("mytodos")
-        //     .select("*");
 
-        // if (mytodos) {
-        //     todos = mytodos;
-        // }
     );
 
     async function refresh() {
@@ -35,7 +29,7 @@
     async function addToList() {
         const { data, error } = await supabase
             .from("ToDo")
-            .insert([{User_ID: $supauser.user.id, Text: "новое дело 6", Checked: false }])
+            .insert([{User_ID: $supauser.user.id, Text: newItem, Checked: false }])
             .select();
     
 
@@ -67,38 +61,94 @@
         console.log(data,error)
      }
 </script>
-
-<div class="flex flex-col items-center justify-center text-black">
+<div class="flex flex-col items-center  justify-center text-black">
     {#if todos}
         <div class="flex flex-col">
+            <p class = "border-b border-black">
+                ㅤ
+            </p>
             {#each todos as item}
-                <div class="flex flex-row justify-between">
-                    <div>
+                <div class="flex flex-row
+                            justify-between
+                            [&:not(:first-child)]:border-l
+                            [&:not(:first-child)]:border-r
+                            [&:not(:first-child)]:border-b
+                            [&:first-child]:border
+                             border-black
+                            p-1 ">
+                    
+                    <div >
                         {item.id}
                     </div>
-                    <div>
+                    <div class="flex justify-between">
+                    <div >
                         <input
                             id={item.id}
                             on:change={onChange}
                             bind:checked={item.Done}
-                            type="checkbox"
+                            type="checkbox"  
                         />
+
                     </div>
-                    <div>
+                    <div >
                         {item.Text}
-                        <button on:click={() => Delete(item.id)}>❌</button>
+                        
+                    </div>
+                </div>
+                    <div >
+                        <button on:click={() => Delete(item.id)}>
+                            ❌
+                        </button>
                     </div>
                 </div>
             {/each}
+            
         </div>
     {:else}
         <p>Загрузка данных...</p>
     {/if}
 
-    <div>
+    <div class="flex flex-col">
+        <p>
+            ㅤ
+        </p>
+        <input bind:value={newItem} type="text" placeholder="Новое дело..">
         <button on:click={addToList}> Добавить </button>
     </div>
     <div>
         <button on:click={refresh}> Обновить </button>
     </div>
 </div>
+
+<style>
+/* 
+.ColRow {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+    .rw:first-child {
+        border: 1px solid red;
+    }
+    .rw:not(:first-child) {
+        border: 1px solid red;
+        border-width: 0 1px 1px 1px;
+    }
+
+    .rw{
+        border-bottom: 1px solid blue;
+        } */
+</style>
+
+<!-- <div class="flex flex-col items-center justify-center">
+{#if todos}
+    {#each todos as item}
+        <p>
+            {item.Text}
+            {item.Done}
+        </p>
+    {/each}
+{:else}
+    <p>Загрузка данных...</p>
+{/if}
+</div> -->

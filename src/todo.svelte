@@ -61,26 +61,22 @@
         console.log(data,error)
      }
 </script>
-<div class="flex flex-col items-center  justify-center text-black">
+<div class = "text-black">
     {#if todos}
         <div class="flex flex-col">
-            <p class = "border-b border-black">
-                ㅤ
-            </p>
             {#each todos as item}
-                <div class="flex flex-row
-                            justify-between
-                            [&:not(:first-child)]:border-l
+                <div class="[&:not(:first-child)]:border-l
                             [&:not(:first-child)]:border-r
                             [&:not(:first-child)]:border-b
                             [&:first-child]:border
                              border-black
-                            p-1 ">
+                            todorow
+                            p-2">
                     
                     <div >
                         {item.id}
                     </div>
-                    <div class="flex justify-between">
+                    <div class="check">
                     <div >
                         <input
                             id={item.id}
@@ -90,11 +86,12 @@
                         />
 
                     </div>
-                    <div >
+                </div>
+                    <div style=" text-align:lesft">
                         {item.Text}
                         
                     </div>
-                </div>
+                    
                     <div >
                         <button on:click={() => Delete(item.id)}>
                             ❌
@@ -108,47 +105,22 @@
         <p>Загрузка данных...</p>
     {/if}
 
-    <div class="flex flex-col">
-        <p>
-            ㅤ
-        </p>
         <input bind:value={newItem} type="text" placeholder="Новое дело..">
         <button on:click={addToList}> Добавить </button>
-    </div>
+
     <div>
         <button on:click={refresh}> Обновить </button>
     </div>
 </div>
-
 <style>
-/* 
-.ColRow {
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0;
-  }
-    .rw:first-child {
-        border: 1px solid red;
+    .todorow{
+        display: grid;
+        gap: 5px;
+        grid-template-columns:  20px 20px 1fr 20px;
+        grid-template-rows: 1fr;
+        align-items: center;
     }
-    .rw:not(:first-child) {
-        border: 1px solid red;
-        border-width: 0 1px 1px 1px;
+    .check{
+        text-align: center;
     }
-
-    .rw{
-        border-bottom: 1px solid blue;
-        } */
 </style>
-
-<!-- <div class="flex flex-col items-center justify-center">
-{#if todos}
-    {#each todos as item}
-        <p>
-            {item.Text}
-            {item.Done}
-        </p>
-    {/each}
-{:else}
-    <p>Загрузка данных...</p>
-{/if}
-</div> -->
